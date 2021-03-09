@@ -116,7 +116,6 @@ public class Server extends JFrame implements Runnable {
 		/* add a "File" menu with:
 		 * "Open" item which allows you to choose a new file
 		 * "Exit" item which ends the process with System.exit(0);
-		 * Key shortcuts are optional
 		 */
 		JMenu menu = new JMenu("File");
       	menu.add(createFileExitItem());
@@ -180,7 +179,6 @@ public class Server extends JFrame implements Runnable {
 					textArea.append(rowString);
 			   } 
 			   catch (SQLException e) {
-				   // TODO Auto-generated catch block
 				   e.printStackTrace();
 			   }
 	       }
@@ -194,14 +192,12 @@ public class Server extends JFrame implements Runnable {
 			sv.setVisible(true);
 			sv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		} catch (IOException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		try {
 	        // Create a server socket
 	        ServerSocket serverSocket = new ServerSocket(DEFAULT_PORT);
@@ -274,10 +270,8 @@ public class Server extends JFrame implements Runnable {
 	      catch(IOException ex) {
 	        ex.printStackTrace();
 	      } catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    }

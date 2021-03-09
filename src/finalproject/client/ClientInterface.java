@@ -164,7 +164,6 @@ public class ClientInterface extends JFrame {
 //						indicating the name of the Active DB
 						dbName.setText(dbFileName.substring(dbFileName.lastIndexOf("/")+1));
 //						queryButtonListener.setConnection(conn);
-						//clearComboBox();
 //						filling the contents of the dropdown box listing names 
 						fillComboBox();
 						
@@ -218,7 +217,6 @@ public class ClientInterface extends JFrame {
 				System.out.print("rowString  is  " + rowString);
 				textArea.setText(rowString);
 		   } catch (SQLException e) {
-			   // TODO Auto-generated catch block
 			   e.printStackTrace();
 		   }
        }
@@ -229,14 +227,12 @@ public class ClientInterface extends JFrame {
 
 	        try {
 				
-	        	// responses are going to come over the input as text, and that's tricky,
-	        	// which is why I've done that for you:
 				
 				
 				// now, get the person on the object dropdownbox we've selected
 				ComboBoxItem personEntry = (ComboBoxItem)peopleSelect.getSelectedItem();
 				
-				// That's tricky which is why I have included the code. the personEntry
+				// the personEntry
 				// contains an ID and a name. You want to get a "Person" object out of that
 				// which is stored in the database
 				PreparedStatement stmt = conn.prepareStatement("Select * from People WHERE id = ?");
@@ -262,9 +258,6 @@ public class ClientInterface extends JFrame {
 				System.out.println("3");
 				if (response.contains("Success")) {
 					System.out.println("Success");
-					// what do you do after we know that the server has successfully
-					// received the data and written it to its own database?
-					// you will have to write the code for that.
 					PreparedStatement stmt2 = conn.prepareStatement("UPDATE People SET sent=1 WHERE id = ?");
 					stmt2.setString(1, temp);
 					stmt2.executeUpdate();
@@ -275,10 +268,8 @@ public class ClientInterface extends JFrame {
 					System.out.println("Failed");
 				}
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 	        
@@ -307,10 +298,6 @@ public class ClientInterface extends JFrame {
 	
 	// a JComboBox will take a bunch of objects and use the "toString()" method
 	// of those objects to print out what's in there. 
-	// So I have provided to you an object to put people's names and ids in
-	// and the combo box will print out their names. 
-	// now you will want to get the ComboBoxItem object that is selected in the combo box
-	// and get the corresponding row in the People table and make a person object out of that.
 	class ComboBoxItem {
 		private int id;
 		private String name;
@@ -333,7 +320,7 @@ public class ClientInterface extends JFrame {
 		}
 	}
 	
-	/* the "open db" menu item in the client should use this ActionListener */
+	/* the "open db" menu item in the client use this ActionListener */
 	   class OpenDBListener implements ActionListener
 	      {
 	         public void actionPerformed(ActionEvent event)
@@ -343,10 +330,6 @@ public class ClientInterface extends JFrame {
 					System.out.println("You chose to open this file: " + jFileChooser.getSelectedFile().getAbsolutePath());
 					String dbFileName = jFileChooser.getSelectedFile().getAbsolutePath();
 					try {
-						/* now that you have the dbFileName, you should probably connect to the DB */
-						/* maybe think about filling the contents of the dropdown box listing names 
-						 * and indicating the name of the Active DB
-						 */
 						connectToDB(dbFileName);
 //						indicating the name of the Active DB
 						dbName.setText(dbFileName.substring(dbFileName.lastIndexOf("/")+1));
@@ -368,13 +351,11 @@ public class ClientInterface extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				try {
 					socket = new Socket("localhost", 8001);
 					textArea.append("Connected");
 					statusLabel.setText("localhost:8001");
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					textArea.append("Connection Failure");
 				}
